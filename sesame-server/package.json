@@ -1,0 +1,33 @@
+{
+  "name": "sesame-system",
+  "version": "1.0.0",
+  "description": "Admission Certificate System",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "nodemon ./src/server.ts",
+    "start": "nodemon ./build/server.js",
+    "prod": "npm run build && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guyzion/sesame-system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guyzion/sesame-system/issues"
+  },
+  "homepage": "https://github.com/guyzion/sesame-system#readme",
+  "dependencies": {
+    "@types/express": "^4.17.6",
+    "@types/mongoose": "^5.7.24",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.19",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  }
+}
