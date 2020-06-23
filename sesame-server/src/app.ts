@@ -31,9 +31,7 @@ class App {
         catch(err){
             console.log(err);
         }
-        
-    }
-
+    } 
 }
 
 export default new App().app;
