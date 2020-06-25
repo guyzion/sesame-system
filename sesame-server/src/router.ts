@@ -1,5 +1,5 @@
 import { Application } from "express";
-import { UserController } from "./controllers/user.controller"
+import { UserController } from "./user/user.controller"
 
 
 export class Router {       
