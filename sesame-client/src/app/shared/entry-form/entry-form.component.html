@@ -1,44 +1,69 @@
-<mat-horizontal-stepper linear='true' #stepper>
+<div class="header">
+    <div class="title">טופס בקשת אישור כניסה</div>
+    <div class="subtitle">מלא את כל השדות על מנת לעבור לשלב הבא</div>
+</div>
+<mat-horizontal-stepper [linear]='isLinear' #stepper>
     <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>פרטי המבקש</ng-template>
+            <ng-template matStepLabel>פרטי המבקש/ת</ng-template>
+            <mat-form-field appearance="outline" class="name">
+                <mat-label>שם מלא</mat-label>
+                <input matInput formControlName="name" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="id">
+                <mat-label>מספר ת"ז</mat-label>
+                <input matInput formControlName="id" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>מספר לוחית זיהוי</mat-label>
+                <input matInput formControlName="name" required>
+            </mat-form-field>
             <div>
-                <mat-form-field>
-                    <mat-label>שם מלא</mat-label>
-                    <input matInput formControlName="name" required>
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field>
-                    <mat-label>מספר ת"ז</mat-label>
-                    <input matInput formControlName="id" required>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>מספר לוחית זיהוי</mat-label>
-                    <input matInput formControlName="name" required>
-                </mat-form-field>
-            </div>
-            <div>
-                <button mat-button matStepperNext>הבא</button>
+                <button mat-flat-button color="primary" matStepperNext>הבא</button>
             </div>
         </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
         <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Fill out your address</ng-template>
-            <mat-form-field>
-                <mat-label>Address</mat-label>
-                <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                        required>
+            <ng-template matStepLabel>פרטי הבקשה</ng-template>
+            <mat-form-field  appearance="outline">
+                <mat-label>בחר מתחם</mat-label>
+                <input matInput formControlName="compound" [matAutocomplete]="compounds">
+                <mat-autocomplete autoActiveFirstOption #compounds="matAutocomplete" [displayWith] = "getOptionName">
+                  <mat-option *ngFor="let option of filteredCompounds | async" [value]="option">
+                    {{option.name}}
+                  </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field  appearance="outline">
+                <mat-label>בחר ענף</mat-label>
+                <input matInput formControlName="unit" [matAutocomplete]="units">
+                <mat-autocomplete autoActiveFirstOption #units="matAutocomplete">
+                  <mat-option *ngFor="let option of filteredUnits | async" [value]="option.name">
+                    {{option.name}}
+                  </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>תאריך תחילה</mat-label>
+                <input matInput [matDatepicker]="startTime" formControlName="startTime">
+                <mat-datepicker-toggle matSuffix [for]="startTime"></mat-datepicker-toggle>
+                <mat-datepicker #startTime></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>תאריך סוף</mat-label>
+                <input matInput [matDatepicker]="endTime" formControlName="endTime">
+                <mat-datepicker-toggle matSuffix [for]="endTime" ></mat-datepicker-toggle>
+                <mat-datepicker #endTime></mat-datepicker>
             </mat-form-field>
             <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+                <button mat-flat-button color="primary" matStepperPrevious>הקודם</button>
+                <button mat-flat-button color="primary" matStepperNext>הבא</button>
             </div>
         </form>
     </mat-step>
     <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
+        <ng-template matStepLabel>סיום</ng-template>
         <p>You are now done.</p>
         <div>
             <button mat-button matStepperPrevious>Back</button>

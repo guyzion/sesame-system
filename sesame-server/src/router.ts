@@ -1,17 +1,31 @@
 import { Application } from "express";
-import { UserController } from "./user/user.controller"
+import { UserController } from "./user/user.controller";
+import { EntryController } from "./entry/entry.controller"
+import { AreaController } from "./area/area.controller"
 
 
 export class Router {       
 
     public userController = new UserController();
+    public entryController = new EntryController();
 
     public routes(app: Application): void {
         
-        app.route("/user")
+        app.route("/users")
             .get(this.userController.getUsers)
             .post(this.userController.addNewUser);
+
+        app.route("/entries")
+            .get(this.entryController.getEntryRequests)
+            .post(this.entryController.addEntry);
         
+        app.route("/compounds")
+            .get(AreaController.getCompounds)
+            .post(AreaController.addNewCompound);
+        
+        app.route("/units")
+            .get(AreaController.getUnits)
+            .post(AreaController.addNewUnit);
     }
 
 }

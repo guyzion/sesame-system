@@ -2,9 +2,9 @@ import { model, Schema, Document } from "mongoose";
 
 
 interface UserInterface extends Document {
-    id: String;
-    username: String;
-    password: String;
+    id: string;
+    username: string;
+    password: string;
 }
 
 const UserSchema = new Schema({
@@ -22,7 +22,7 @@ const UserSchema = new Schema({
     }
 })
 
-export const User = model("User", UserSchema);
+export const User = model<UserInterface>("User", UserSchema);
 
 
 

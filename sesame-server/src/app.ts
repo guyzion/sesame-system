@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as dotenv from "dotenv";
 import * as bodyParser from "body-parser";
+import * as cors from "cors";
 import { Router } from "./router";
 import { connect } from "mongoose";
 
@@ -20,17 +21,14 @@ class App {
     private config(){
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(cors());
         dotenv.config();
     }
 
     private async mongoSetup(){
-        try{
-            await connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true});
-            console.log("Successfully connected to " + process.env.MONGO_URL);
-        }
-        catch(err){
-            console.log(err);
-        }
+        await connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true})
+            .catch(error => console.log(error));
+        console.log("Successfully connected to " + process.env.MONGO_URL);
     } 
 }
 
