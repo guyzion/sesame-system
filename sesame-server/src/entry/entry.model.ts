@@ -1,7 +1,6 @@
 import { model, Schema, Document } from "mongoose";
 
-
-interface EntryInterface extends Document {
+export interface Entry extends Document {
     id: string;
     name: string;
     compoundId: string;
@@ -54,7 +53,8 @@ const EntrySchema = new Schema({
     }
 })
 
-export const Entry = model<EntryInterface>("Entry", EntrySchema);
+export const EntryModel = model<Entry>("Entry", EntrySchema);
+
 
 
 

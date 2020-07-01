@@ -1,26 +1,22 @@
-import { Entry } from "./entry.model";
+import { Entry, EntryModel} from "./entry.model";
 import { Request, Response } from "express";
 
 export class EntryController{
     
     public async addEntry (req: Request, res: Response){
-        try{
-            let newEntry = new Entry(req.body);
-            let user = await newEntry.save();
-            res.json(user);
-        }
-        catch(err){
-            res.send(err);
-        }   
+        let newEntry = new EntryModel(req.body);
+        let entry = await newEntry.save().catch(error => res.send(error));
+        res.json(entry);
+   
     }
 
     public async getEntryRequests(req: Request, res: Response){
-        try{
-            let users = await Entry.find({});
-            res.json(users);
-        }
-        catch(err){
-            res.send(err);
-        }
+        let requests: Response<Entry[]> = await EntryModel.find({}).catch(error => res.send(error));
+        res.json(requests);
+    }
+
+    public async getStatus(req: Request, res: Response){
+        let entry: Entry = await EntryModel.findById({_id: req.params._id}).catch(error => res.send(error)) as any;
+        res.send(entry.isApproved);
     }
 }

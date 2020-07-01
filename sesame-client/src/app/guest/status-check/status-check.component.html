@@ -1,0 +1,9 @@
+<div class="title">בדוק סטטוס בקשה</div>
+<div class="check">
+    <mat-form-field appearance="outline">
+        <mat-label>מספר בקשה</mat-label>
+        <input matInput [formControl]="requestId" />
+    </mat-form-field>
+    <button mat-flat-button color="accent" (click)="checkStatus()">בדוק סטטוס</button>
+    
+</div>

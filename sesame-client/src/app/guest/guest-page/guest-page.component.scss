@@ -1,15 +1,28 @@
 .container{
+    height: 100%;
+    background: url('../../../assets/bg.jpg');
+    background-size: cover;
+    display: flex;  
+}
+
+
+
+.form-container{
+    flex: 3;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    background-color:#3f51b5
+}
+
+.status-check-container{
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .form{
-    width: 40%;
-    height: 80%;
-    background-color: white;
-    border-radius: 20px;
-    padding: 30px
+    height: 600px;
+    width: 700px;
 }

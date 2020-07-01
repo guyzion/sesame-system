@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [EntryFormComponent],
@@ -21,7 +22,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatCheckboxModule,
   ],
   exports:[
     MatFormFieldModule,
@@ -31,7 +33,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     ReactiveFormsModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatCheckboxModule,
   ],
   providers:[
     MatNativeDateModule,

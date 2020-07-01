@@ -14,13 +14,13 @@ export class AreaController{
         res.json(areas);
     }
 
-    static async addNewUnit(req: Request, res: Response){
+    static async addNewBranch(req: Request, res: Response){
         let newArea = new Area(req.body);
         let area = await newArea.save().catch(error => res.send(error));
         res.json(area);
     }
 
-    static async getUnits(req: Request, res: Response){
+    static async getBranches(req: Request, res: Response){
         let areas = await Area.find({parentId: {$exists: true}}).catch(error => res.send(error));
         res.json(areas);
     }

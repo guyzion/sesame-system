@@ -6,17 +6,17 @@
     <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>פרטי המבקש/ת</ng-template>
-            <mat-form-field appearance="outline" class="name">
+            <mat-form-field appearance="fill" class="name">
                 <mat-label>שם מלא</mat-label>
                 <input matInput formControlName="name" required>
             </mat-form-field>
-            <mat-form-field appearance="outline" class="id">
+            <mat-form-field appearance="fill" class="id">
                 <mat-label>מספר ת"ז</mat-label>
                 <input matInput formControlName="id" required>
             </mat-form-field>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
                 <mat-label>מספר לוחית זיהוי</mat-label>
-                <input matInput formControlName="name" required>
+                <input matInput formControlName="licensePlateNumber" required>
             </mat-form-field>
             <div>
                 <button mat-flat-button color="primary" matStepperNext>הבא</button>
@@ -26,48 +26,60 @@
     <mat-step [stepControl]="secondFormGroup">
         <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>פרטי הבקשה</ng-template>
-            <mat-form-field  appearance="outline">
-                <mat-label>בחר מתחם</mat-label>
-                <input matInput formControlName="compound" [matAutocomplete]="compounds">
-                <mat-autocomplete autoActiveFirstOption #compounds="matAutocomplete" [displayWith] = "getOptionName">
-                  <mat-option *ngFor="let option of filteredCompounds | async" [value]="option">
-                    {{option.name}}
-                  </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
-            <mat-form-field  appearance="outline">
-                <mat-label>בחר ענף</mat-label>
-                <input matInput formControlName="unit" [matAutocomplete]="units">
-                <mat-autocomplete autoActiveFirstOption #units="matAutocomplete">
-                  <mat-option *ngFor="let option of filteredUnits | async" [value]="option.name">
-                    {{option.name}}
-                  </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>תאריך תחילה</mat-label>
-                <input matInput [matDatepicker]="startTime" formControlName="startTime">
-                <mat-datepicker-toggle matSuffix [for]="startTime"></mat-datepicker-toggle>
-                <mat-datepicker #startTime></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>תאריך סוף</mat-label>
-                <input matInput [matDatepicker]="endTime" formControlName="endTime">
-                <mat-datepicker-toggle matSuffix [for]="endTime" ></mat-datepicker-toggle>
-                <mat-datepicker #endTime></mat-datepicker>
-            </mat-form-field>
+            <div>
+                <mat-form-field  appearance="fill">
+                    <mat-label>בחר מתחם</mat-label>
+                    <input matInput formControlName="compound" [matAutocomplete]="compounds" required>
+                    <mat-autocomplete autoActiveFirstOption #compounds="matAutocomplete" [displayWith] = "getOptionName">
+                    <mat-option *ngFor="let option of filteredCompounds | async" [value]="option">
+                        {{option.name}}
+                    </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field  appearance="fill">
+                    <mat-label>בחר ענף</mat-label>
+                    <input matInput formControlName="branch" [matAutocomplete]="branches" required>
+                    <mat-autocomplete autoActiveFirstOption #branches="matAutocomplete" [displayWith] = "getOptionName">
+                    <mat-option *ngFor="let option of filteredBranches | async" [value]="option">
+                        {{option.name}}
+                    </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-checkbox formControlName="isEscorted">האם נדרש ליווי</mat-checkbox>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>תאריך תחילה</mat-label>
+                    <input matInput [matDatepicker]="startTime" formControlName="startTime" required>
+                    <mat-datepicker-toggle matSuffix [for]="startTime"></mat-datepicker-toggle>
+                    <mat-datepicker #startTime></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>תאריך סוף</mat-label>
+                    <input matInput [matDatepicker]="endTime" formControlName="endTime" required>
+                    <mat-datepicker-toggle matSuffix [for]="endTime" ></mat-datepicker-toggle>
+                    <mat-datepicker #endTime></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill" class="comments">
+                    <mat-label>הערות</mat-label>
+                    <textarea matInput formControlName="comments"></textarea>
+                </mat-form-field>
+            </div>
             <div>
                 <button mat-flat-button color="primary" matStepperPrevious>הקודם</button>
-                <button mat-flat-button color="primary" matStepperNext>הבא</button>
+                <button mat-flat-button color="primary" (click)="sendRequest()" matStepperNext>הגש בקשה</button>
             </div>
         </form>
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>סיום</ng-template>
-        <p>You are now done.</p>
+        <p>בקשתך התקבלה.</p>
+        <p>מספר הבקשה: {{this.requestId}}</p>
         <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button mat-flat-button color="primary" matStepperPrevious>הקודם</button>
+            <button mat-button mat-flat-button color="primary" (click)="stepper.reset()">התחל מחדש</button>
         </div>
     </mat-step>
 </mat-horizontal-stepper>

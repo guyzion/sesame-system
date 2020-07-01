@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Area } from '../interfaces/area.interface';
-import { environment } from '../../../environments/environment'
+import { environment } from '../../../environments/environment';
+import { Entry } from '../interfaces/entry.interface';
+
 
 @Component({
   selector: 'app-entry-form',
@@ -13,15 +15,16 @@ import { environment } from '../../../environments/environment'
 })
 export class EntryFormComponent implements OnInit {
   baseUrl = environment.baseUrl;
-  isLinear = false;
+  isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   compounds: Area[];
   filteredCompounds: Observable<Area[]>;
-  units: Area[];
-  filteredUnits: Observable<Area[]>;
+  branches: Area[];
+  filteredBranches: Observable<Area[]>;
   compound: AbstractControl;
-  unit: AbstractControl;
+  branch: AbstractControl;
+  requestId: string;
 
   constructor(private _formBuilder: FormBuilder, private http: HttpClient) {}
 
@@ -29,20 +32,23 @@ export class EntryFormComponent implements OnInit {
 
     this.firstFormGroup = this._formBuilder.group({
       id: ['', Validators.required],
-      name: ['', Validators.required]
+      name: ['', Validators.required],
+      licensePlateNumber: ['', Validators.required],
     });
 
     this.secondFormGroup = this._formBuilder.group({
       compound: ['', Validators.required],
-      unit: ['', Validators.required],
+      branch: ['', Validators.required],
+      isEscorted: [false],
       startTime: [new Date(), Validators.required],
       endTime: [new Date(), Validators.required],
+      comments: [''],
     });
-    
-    this.compound = this.secondFormGroup.controls.compound;
-    this.unit = this.secondFormGroup.controls.unit;
 
-    this.compound.valueChanges.subscribe(() => this.unit.setValue(''));
+    this.compound = this.secondFormGroup.controls.compound;
+    this.branch = this.secondFormGroup.controls.branch;
+
+    this.compound.valueChanges.subscribe(() => this.branch.setValue(''));
 
     this.http.get(this.baseUrl + 'compounds').subscribe((data: Area[]) =>{
       console.log(data);
@@ -51,18 +57,39 @@ export class EntryFormComponent implements OnInit {
         .pipe(startWith(''), map(value => this._filterAreas(this.compounds, value)));
     });
     
-    this.http.get(this.baseUrl + 'units').subscribe((data: Area[]) =>{
+    this.http.get(this.baseUrl + 'branches').subscribe((data: Area[]) =>{
       console.log(data);
-      this.units = data;
-      this.filteredUnits = this.unit.valueChanges
-        .pipe(startWith(''), map(value => this._filterAreas(this.units, value)), map(list => this._filterUnits(list)));
+      this.branches = data;
+      this.filteredBranches = this.branch.valueChanges
+        .pipe(startWith(''), map(value => this._filterAreas(this.branches, value)), map(list => this._filterBranches(list)));
     });
 
   }
 
   private _filterAreas = (list: Area[], filterValue: string) => list.filter(area => area.name.includes(filterValue));
-  private _filterUnits = (list: Area[]) => list.filter(unit => unit.parentId == this.compound.value._id);
+  private _filterBranches = (list: Area[]) => list.filter(branch => branch.parentId == this.compound.value._id);
 
   getOptionName = (option: Area) => option.name; 
+
+  sendRequest(){
+    let entry: Entry = {
+      id: this.firstFormGroup.controls.id.value,
+      name: this.firstFormGroup.controls.name.value,
+      licensePlateNumber: this.firstFormGroup.controls.licensePlateNumber.value,
+      compoundId: this.compound.value._id,
+      branchId: this.branch.value._id,
+      isEscorted: this.secondFormGroup.controls.isEscorted.value,
+      startDate: this.secondFormGroup.controls.startTime.value,
+      endDate: this.secondFormGroup.controls.endTime.value,
+      comments: this.secondFormGroup.controls.comments.value,
+    }
+
+    console.log(entry);
+
+    this.http.post<Entry>(this.baseUrl + 'entries', entry).subscribe(data =>{
+      console.log(data);
+      this.requestId = data._id;
+    });
+  }
 
 }

@@ -19,13 +19,16 @@ export class Router {
             .get(this.entryController.getEntryRequests)
             .post(this.entryController.addEntry);
         
+        app.route("/entries/:_id")
+            .get(this.entryController.getStatus);
+        
         app.route("/compounds")
             .get(AreaController.getCompounds)
             .post(AreaController.addNewCompound);
         
-        app.route("/units")
-            .get(AreaController.getUnits)
-            .post(AreaController.addNewUnit);
+        app.route("/branches")
+            .get(AreaController.getBranches)
+            .post(AreaController.addNewBranch);
     }
 
 }

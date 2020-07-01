@@ -9,16 +9,26 @@ button{
 
 .header{
     text-align: center;
+    padding-bottom: 40px;
 }
 
 .title{
-    font-size: 35px;
+    font-size: 47px;
     font-weight: bold;
-
+    color: #3f51b5;
 }
 
 .subtitle{
-    font-size: 15px;
-    margin-top: 15px;
+    font-size: 18px;
+    margin-top: 24px;
+    //font-weight: bold;
+}
+
+mat-checkbox{
+    font-size: 17px;
+}
+
+.comments{
+    width: 430px;
 }
 
