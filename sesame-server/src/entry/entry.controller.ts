@@ -8,6 +8,7 @@ export class EntryController{
         let entry = await newEntry.save().catch(error => res.send(error));
         res.json(entry);
    
+        
     }
 
     public async getEntryRequests(req: Request, res: Response){

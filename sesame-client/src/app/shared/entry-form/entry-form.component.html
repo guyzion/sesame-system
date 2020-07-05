@@ -1,20 +1,20 @@
 <div class="header">
-    <div class="title">טופס בקשת אישור כניסה</div>
-    <div class="subtitle">מלא את כל השדות על מנת לעבור לשלב הבא</div>
+    <div class="title">טופס אישור כניסה</div>
+    <!-- <div class="subtitle">מלא את כל השדות על מנת לעבור לשלב הבא</div> -->
 </div>
 <mat-horizontal-stepper [linear]='isLinear' #stepper>
     <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>פרטי המבקש/ת</ng-template>
-            <mat-form-field appearance="fill" class="name">
+            <mat-form-field appearance="outline" class="name">
                 <mat-label>שם מלא</mat-label>
                 <input matInput formControlName="name" required>
             </mat-form-field>
-            <mat-form-field appearance="fill" class="id">
+            <mat-form-field appearance="outline" class="id">
                 <mat-label>מספר ת"ז</mat-label>
                 <input matInput formControlName="id" required>
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="outline">
                 <mat-label>מספר לוחית זיהוי</mat-label>
                 <input matInput formControlName="licensePlateNumber" required>
             </mat-form-field>
@@ -27,7 +27,7 @@
         <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>פרטי הבקשה</ng-template>
             <div>
-                <mat-form-field  appearance="fill">
+                <mat-form-field  appearance="outline">
                     <mat-label>בחר מתחם</mat-label>
                     <input matInput formControlName="compound" [matAutocomplete]="compounds" required>
                     <mat-autocomplete autoActiveFirstOption #compounds="matAutocomplete" [displayWith] = "getOptionName">
@@ -36,7 +36,7 @@
                     </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
-                <mat-form-field  appearance="fill">
+                <mat-form-field  appearance="outline">
                     <mat-label>בחר ענף</mat-label>
                     <input matInput formControlName="branch" [matAutocomplete]="branches" required>
                     <mat-autocomplete autoActiveFirstOption #branches="matAutocomplete" [displayWith] = "getOptionName">
@@ -48,13 +48,13 @@
                 <mat-checkbox formControlName="isEscorted">האם נדרש ליווי</mat-checkbox>
             </div>
             <div>
-                <mat-form-field appearance="fill">
+                <mat-form-field appearance="outline">
                     <mat-label>תאריך תחילה</mat-label>
                     <input matInput [matDatepicker]="startTime" formControlName="startTime" required>
                     <mat-datepicker-toggle matSuffix [for]="startTime"></mat-datepicker-toggle>
                     <mat-datepicker #startTime></mat-datepicker>
                 </mat-form-field>
-                <mat-form-field appearance="fill">
+                <mat-form-field appearance="outline">
                     <mat-label>תאריך סוף</mat-label>
                     <input matInput [matDatepicker]="endTime" formControlName="endTime" required>
                     <mat-datepicker-toggle matSuffix [for]="endTime" ></mat-datepicker-toggle>
@@ -62,9 +62,9 @@
                 </mat-form-field>
             </div>
             <div>
-                <mat-form-field appearance="fill" class="comments">
+                <mat-form-field appearance="outline" class="comments">
                     <mat-label>הערות</mat-label>
-                    <textarea matInput formControlName="comments"></textarea>
+                    <textarea class="comments-area" matInput formControlName="comments"></textarea>
                 </mat-form-field>
             </div>
             <div>
