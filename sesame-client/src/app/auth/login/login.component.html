@@ -1,11 +1,17 @@
-<div class="example-container">
-    <mat-form-field appearance="fill">
-      <mat-label>Input</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Textarea</mat-label>
-      <textarea matInput></textarea>
-    </mat-form-field>
+<div class="header">
+  <div class="title">התחבר למערכת</div>
+  <!-- <div class="subtitle">מלא את כל השדות על מנת לעבור לשלב הבא</div> -->
 </div>
+<form [formGroup]="loginForm">
+  <div class="container">
+    <mat-form-field appearance="outline">
+      <mat-label>מספר תעודת זהות</mat-label>
+      <input matInput formControlName="id" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>סיסמה</mat-label>
+      <input matInput type="password" formControlName="password" required>
+    </mat-form-field>
+    <button mat-flat-button color="accent" (click)="login()">התחבר</button>
+  </div>
+</form>

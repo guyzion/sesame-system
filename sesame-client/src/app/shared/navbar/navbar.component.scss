@@ -1,0 +1,57 @@
+.navbar{
+    flex:1;
+    padding-left: 15px;
+    display: flex;
+    //background-color: #131417;
+    margin-bottom: 70px;
+
+    .status-check{
+        flex: 1;
+        margin-top: 20px;
+        height: 45px;
+        background-color: #252830;
+        border-radius: 5px;
+        margin-right: 20px;
+
+        input{
+            background: none;
+            border: 0;
+            height: 100%;
+            width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            padding-right: 20px;
+            outline: none;
+        }
+
+        ::placeholder{
+            color: #868ca0;
+        }
+
+
+    }
+
+
+    button {
+        height: 45px;
+        width: 110px;
+        margin-top: 20px;
+        margin-right: 15px;
+        font-size: 16px;
+    }
+
+    .sign{
+        background-color: #47cf73;
+        font-weight: bold;
+    }
+
+    .login{
+        background-color: #444857;
+        color: white;
+    }
+
+    .button:hover{
+        background-blend-mode: darken;
+    }
+}

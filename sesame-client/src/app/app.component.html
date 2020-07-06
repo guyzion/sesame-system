@@ -2,17 +2,9 @@
     <div class="sidenav">
         <img class="logo" src="../assets/sesame-logo.png">
         <div class="button" routerLink="/">טופס אישור כניסה</div>
-        
     </div>
     <div class="main">
-        <div class="navbar">
-            <div class="status-check"> 
-                <input placeholder="הזן מספר בקשה..." [formControl]="requestId"  />
-            </div>
-            <button mat-flat-button class="check">בדוק סטטוס</button>
-            <button mat-flat-button class="sign">הירשם</button>
-            <button mat-flat-button class="login" routerLink="/login" >התחבר</button>
-        </div>
+        <app-navbar></app-navbar>
         <div class="content">
             <router-outlet></router-outlet>
         </div>

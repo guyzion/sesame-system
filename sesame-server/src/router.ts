@@ -14,12 +14,15 @@ export class Router {
         app.route("/users")
             .get(this.userController.getUsers)
             .post(this.userController.addNewUser);
+        
+        app.route("/users/login")
+            .post(this.userController.login)
 
         app.route("/entries")
             .get(this.entryController.getEntryRequests)
             .post(this.entryController.addEntry);
         
-        app.route("/entries/:_id")
+        app.route("/entries/status")
             .get(this.entryController.getStatus);
         
         app.route("/compounds")

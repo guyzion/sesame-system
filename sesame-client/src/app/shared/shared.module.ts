@@ -10,9 +10,12 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RouterModule } from '@angular/router';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [EntryFormComponent],
+  declarations: [EntryFormComponent, NavbarComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -24,6 +27,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatNativeDateModule,
     MatAutocompleteModule,
     MatCheckboxModule,
+    RouterModule,
+    MatSnackBarModule
   ],
   exports:[
     MatFormFieldModule,
@@ -35,6 +40,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatDatepickerModule,
     MatAutocompleteModule,
     MatCheckboxModule,
+    NavbarComponent,
   ],
   providers:[
     MatNativeDateModule,
