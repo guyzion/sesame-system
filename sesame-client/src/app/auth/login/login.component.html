@@ -1,16 +1,15 @@
 <div class="header">
   <div class="title">התחבר למערכת</div>
-  <!-- <div class="subtitle">מלא את כל השדות על מנת לעבור לשלב הבא</div> -->
 </div>
 <form [formGroup]="loginForm">
   <div class="container">
     <mat-form-field appearance="outline">
       <mat-label>מספר תעודת זהות</mat-label>
-      <input matInput formControlName="id" required>
+      <input matInput formControlName="id" [errorStateMatcher]="matcher" required>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>סיסמה</mat-label>
-      <input matInput type="password" formControlName="password" required>
+      <input matInput type="password" formControlName="password" [errorStateMatcher]="matcher" required>
     </mat-form-field>
     <button mat-flat-button color="accent" (click)="login()">התחבר</button>
   </div>

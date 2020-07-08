@@ -1,8 +1,9 @@
 form{
     height: 400px;
     width: 500px;
-    background-color: white;
-    border-radius: 15px;
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 63%, rgba(209,209,209,1) 100%);
+    border-radius: 10px;
 }
 
 .container{
@@ -22,6 +23,9 @@ button{
     width: 300px;
     height: 50px;
     font-size: 16px;
+    color: black !important;
+    font-weight: bold;
+    background-color: #47cf73 !important;
 }
 
 .header{
@@ -30,6 +34,5 @@ button{
 
 .title{
     font-size: 47px;
-    font-weight: bold;
     color: white;
 }

@@ -1,0 +1,33 @@
+.sidenav{
+    flex:1;
+    height: 100%;
+    background-color: #1e1f26;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .logo{
+        height: 50px;
+        width: 142px; 
+        margin-top: 10px;
+        margin-bottom: 15px;
+        align-self: center;
+    }
+    
+    .button{
+        width: 85%;
+        padding: 10px;
+        font-size: 17px;
+        cursor: pointer;
+        display: flex;
+        border-radius: 5px;
+        span{
+            margin-right: 10px;
+        }
+    }
+    
+    .button:hover{
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+}

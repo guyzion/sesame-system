@@ -5,42 +5,18 @@ div{
 .container{
     display: flex;
     height: 100%;
-    background: url('../assets/bg.jpg');
+    background: url('../assets/bg.png');
     background-size: cover;
     background-color: #131417;
 }
 
-.sidenav{
-    flex:1;
-    background-color: #1e1f26;
-    color: white;
-    display: flex;
-    flex-direction: column;
-
-    .logo{
-        height: 50px;
-        width: 142px; 
-        margin-top: 10px;
-        margin-bottom: 10px;
-        align-self: center;
-    }
-    
-    .button{
-        padding: 10px;
-        font-size: 17px;
-        cursor: pointer;
-        // font-weight: bold;
-    }
-    
-    .button:hover{
-        background-color: rgba(0, 0, 0, 0.6);
-    }
+.side{
+    flex: 1;
 }
 
 
-
 .main {
-    flex:8;
+    flex: 8;
     display: flex;
     flex-direction: column;
 

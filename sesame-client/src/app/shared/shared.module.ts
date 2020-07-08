@@ -13,9 +13,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
-  declarations: [EntryFormComponent, NavbarComponent],
+  declarations: [EntryFormComponent, NavbarComponent, SidenavComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -28,7 +30,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatAutocompleteModule,
     MatCheckboxModule,
     RouterModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatIconModule,
   ],
   exports:[
     MatFormFieldModule,
@@ -41,6 +44,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatAutocompleteModule,
     MatCheckboxModule,
     NavbarComponent,
+    MatIconModule,
+    SidenavComponent,
   ],
   providers:[
     MatNativeDateModule,

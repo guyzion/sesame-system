@@ -1,8 +1,6 @@
 .navbar{
-    flex:1;
     padding-left: 15px;
     display: flex;
-    //background-color: #131417;
     margin-bottom: 70px;
 
     .status-check{
@@ -12,6 +10,7 @@
         background-color: #252830;
         border-radius: 5px;
         margin-right: 20px;
+        border: 0;
 
         input{
             background: none;
@@ -29,9 +28,7 @@
             color: #868ca0;
         }
 
-
     }
-
 
     button {
         height: 45px;

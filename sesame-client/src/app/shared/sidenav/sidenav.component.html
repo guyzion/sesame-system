@@ -1,0 +1,14 @@
+<div class="sidenav">
+    <img class="logo" src="../assets/sesame-logo.png">
+    <div class="button" routerLink="login">
+        <mat-icon>person</mat-icon>
+        <div [ngSwitch]="authService.isLogged">
+            <span *ngSwitchCase="false">אורח</span>
+            <span *ngSwitchCase="true">{{authService.user.username}}</span>
+        </div>
+    </div>
+    <div class="button" routerLink="">
+        <mat-icon>message</mat-icon>
+        <span>טופס אישור כניסה</span>
+    </div>
+</div>

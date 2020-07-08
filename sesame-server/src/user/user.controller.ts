@@ -17,9 +17,8 @@ export class UserController{
     public async login(req: Request, res: Response){
         const tryUser = new User(req.body);
         const ret = await User.findOne({id: tryUser.id}).catch(error => res.status(404).send(error));
-        console.log(ret);
         const user = new User(ret);
-        console.log(user);
-        if(user.password == tryUser.password) res.send({});
+        if(user.password == tryUser.password) res.send(user);
+        else res.sendStatus(404);
     }
 }

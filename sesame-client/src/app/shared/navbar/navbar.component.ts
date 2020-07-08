@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-navbar',
@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
         this.snackBar.open(this.statusText, "אוקיי", {duration: 10000})
       })
 
-    
+      
   }
 
 }
